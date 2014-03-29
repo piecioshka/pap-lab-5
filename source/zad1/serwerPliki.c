@@ -34,12 +34,12 @@ int main (int argc, char * argv[]) {
 
     /* create socket to connection */
     sock_id1 = create_socket_tcp();
-    
+
     /* bind server to defined port */
     bind_port(sock_id1, xferServer);
-    
+
     /* server waiting for client */
-    listen_for_client(sock_id1, MAX_QUEUE);
+    listen_for_client_tcp(sock_id1, MAX_QUEUE);
 
     for (;;) {
         int fd;

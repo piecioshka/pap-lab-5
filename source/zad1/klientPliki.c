@@ -44,7 +44,7 @@ int main(int argc, char * argv[]) {
     sock_id = create_socket_tcp();
 
     /* use create socket to connect address */
-    create_connection(sock_id, xferServer);
+    create_connection_tcp(sock_id, xferServer);
 
     /* wyslij nazwe pliku */
     send_string(xferServer, & filename);
@@ -64,7 +64,7 @@ int main(int argc, char * argv[]) {
         fprintf(stderr, "Could not open destination file, using stdout.\n");
         fd = 1;
     }
- 
+
     /* czytaj plik z serwera */
     receive_from_server(sock_id);
 
