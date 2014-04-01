@@ -27,12 +27,10 @@
 
 int make_server_socket_q(int , int );
 
-int make_server_socket(int portnum)
-{
+int make_server_socket(int portnum) {
 	return make_server_socket_q(portnum, BACKLOG);
 }
-int make_server_socket_q(int portnum, int backlog)
-{
+int make_server_socket_q(int portnum, int backlog) {
 	struct  sockaddr_in   saddr;   
 	struct	hostent		*hp;  
 	char	hostname[HOSTLEN];   
@@ -47,7 +45,7 @@ int make_server_socket_q(int portnum, int backlog)
 	bzero((void *)&saddr, sizeof(saddr));   
 	gethostname(hostname, HOSTLEN);        
 	hp = gethostbyname(hostname);         
-	                                     
+
 	bcopy( (void *)hp->h_addr, (void *)&saddr.sin_addr, hp->h_length);
 	saddr.sin_port = htons(portnum);    
 	saddr.sin_family = AF_INET ;       
@@ -61,8 +59,7 @@ int make_server_socket_q(int portnum, int backlog)
 	return sock_id;
 }
 
-int connect_to_server(char *host, int portnum)
-{
+int connect_to_server(char *host, int portnum) {
 	int sock;
 	struct sockaddr_in  servadd;      
 	struct hostent      *hp;         

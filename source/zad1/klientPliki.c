@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include "../../library/utils.h"
+#include "../lib/libnetutils.h"
 
 int main(int argc, char * argv[]) {
     int sock_id;
@@ -37,7 +37,7 @@ int main(int argc, char * argv[]) {
     xferServer.sin_family = AF_INET;
     xferServer.sin_addr.s_addr = inet_addr(ip_address);
     xferServer.sin_port = htons(port);
-    
+
     printf("=== create client instance ===\n\n");
 
     /* create socket to connection */
@@ -50,7 +50,7 @@ int main(int argc, char * argv[]) {
     send_string(xferServer, & filename);
 
     if (returnStatus == -1) {
-        fprintf(stderr, "Could not send filename to server!\n");
+        fprintf(stderr, "ERROR: Could not send filename to server!\n");
         exit(1);
     }
 
@@ -61,7 +61,7 @@ int main(int argc, char * argv[]) {
     fd = open(filename, O_RDWR);
 
     if (fd == -1) {
-        fprintf(stderr, "Could not open destination file, using stdout.\n");
+        fprintf(stderr, "ERROR: Could not open destination file, using stdout.\n");
         fd = 1;
     }
 
@@ -69,7 +69,7 @@ int main(int argc, char * argv[]) {
     receive_from_server(sock_id);
 
     if (counter == -1) {
-        fprintf(stderr, "Could not read file from socket!\n");
+        fprintf(stderr, "ERROR: Could not read file from socket!\n");
         exit(1);
     }
 

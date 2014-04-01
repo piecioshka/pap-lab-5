@@ -19,8 +19,7 @@ void do_exec( char *prog, int fd );
 void do_cat(char *f, int fd);
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 	int 	sock, fd;
 	FILE	*fpin;
 	char	request[BUFSIZ];
@@ -55,8 +54,7 @@ int main(int argc, char *argv[])
    pomin wszystko do znakow CRNL
    ------------------------------------------------------ */
 
-void read_til_crnl(FILE *fp)
-{
+void read_til_crnl(FILE *fp) {
 	char	buf[BUFSIZ];
 	while( fgets(buf,BUFSIZ,fp) != NULL && strcmp(buf,"\r\n") != 0 )
 		;
@@ -69,8 +67,7 @@ void read_til_crnl(FILE *fp)
    rq to zadanie HTTP w postaci:  GET /foo/bar.html HTTP/1.0
    ------------------------------------------------------ */
 
-void process_rq( char *rq, int fd )
-{
+void process_rq( char *rq, int fd ) {
 	char	cmd[BUFSIZ], arg[BUFSIZ];
 
 	if ( fork() != 0 )
@@ -96,8 +93,7 @@ void process_rq( char *rq, int fd )
    Naglowek odpowiedzi - Zadanie poprawne 
    ------------------------------------------------------ */
 
-void header( FILE *fp, char *content_type )
-{
+void header( FILE *fp, char *content_type ) {
 	fprintf(fp, "HTTP/1.0 200 OK\r\n");
 	if ( content_type )
 		fprintf(fp, "Content-type: %s\r\n", content_type );
@@ -108,8 +104,7 @@ void header( FILE *fp, char *content_type )
     and do_404(item,fd) Nie ma takiego obiektu
    ------------------------------------------------------ */
 
-void cannot_do(int fd)
-{
+void cannot_do(int fd) {
 	FILE	*fp = fdopen(fd,"w");
 
 	fprintf(fp, "HTTP/1.0 501 Not Implemented\r\n");
@@ -120,8 +115,7 @@ void cannot_do(int fd)
 	fclose(fp);
 }
 
-void do_404(char *item, int fd)
-{
+void do_404(char *item, int fd) {
 	FILE	*fp = fdopen(fd,"w");
 
 	fprintf(fp, "HTTP/1.0 404 Not Found\r\n");
@@ -137,20 +131,17 @@ void do_404(char *item, int fd)
   Listowanie katalogu
   ------------------------------------------------------ */
 
-int isadir(char *f)
-{
+int isadir(char *f) {
 	struct stat info;
 	return ( stat(f, &info) != -1 && S_ISDIR(info.st_mode) );
 }
 
-int not_exist(char *f)
-{
+int not_exist(char *f) {
 	struct stat info;
 	return( stat(f,&info) == -1 );
 }
 
-int do_ls(char *dir, int fd)
-{
+int do_ls(char *dir, int fd) {
 	FILE	*fp ;
 
 	fp = fdopen(fd,"w");
@@ -170,21 +161,18 @@ int do_ls(char *dir, int fd)
    Obsluga skryptow cgi
    ------------------------------------------------------ */
 /* zwraca rozszerzenie pliku */
-char * file_type(char *f)
-{
+char * file_type(char *f) {
 	char	*cp;
 	if ( (cp = strrchr(f, '.' )) != NULL )
 		return cp+1;
 	return "";
 }
 
-int ends_in_cgi(char *f)
-{
+int ends_in_cgi(char *f) {
 	return ( strcmp( file_type(f), "cgi" ) == 0 );
 }
 
-void do_exec( char *prog, int fd )
-{
+void do_exec( char *prog, int fd ) {
 	FILE	*fp ;
 
 	fp = fdopen(fd,"w");
@@ -201,8 +189,7 @@ void do_exec( char *prog, int fd )
    przesylanie pliku
    ------------------------------------------------------ */
 
-void do_cat(char *f, int fd)
-{
+void do_cat(char *f, int fd) {
 	char	*extension = file_type(f);
 	char	*content = "text/plain";
 	FILE	*fpsock, *fpfile;

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../../library/utils.h"
+#include "../lib/libnetutils.h"
 
 #define MAXBUF 1024
 #define MAX_QUEUE 128
@@ -54,7 +54,7 @@ int main (int argc, char * argv[]) {
         sock_id2 = accept(sock_id1, (struct sockaddr *) & xferClient, & addrlen);
 
         if (sock_id2 == -1) {
-            fprintf(stderr, "Could not accept connection!\n");
+            fprintf(stderr, "ERROR: Could not accept connection!\n");
             exit(1);
         }
 
@@ -66,7 +66,7 @@ int main (int argc, char * argv[]) {
         }
 
         if (readCounter == -1) {
-            fprintf(stderr, "Could not read filename from socket!\n");
+            fprintf(stderr, "ERROR: Could not read filename from socket!\n");
             close(sock_id2);
             continue;
         }
@@ -79,7 +79,7 @@ int main (int argc, char * argv[]) {
         fd = open(filename, O_RDONLY);
 
         if (fd == -1) {
-            fprintf(stderr, "Could not open file for reading!\n");
+            fprintf(stderr, "ERROR: Could not open file for reading!\n");
             close(sock_id2);
             continue;
         }
@@ -97,7 +97,7 @@ int main (int argc, char * argv[]) {
                 writeCounter = write(sock_id2, bufptr, readCounter);
 
                 if (writeCounter == -1) {
-                    fprintf(stderr, "Could not write file to client!\n");
+                    fprintf(stderr, "ERROR: Could not write file to client!\n");
                     close(sock_id2);
                     continue;
                 }
