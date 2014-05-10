@@ -1,12 +1,8 @@
 SHELL = /bin/bash
-
 CC = gcc
 CFLAGS = -Wall --pedantic
-
 TARGET = bin/
 SRC = source/
-
-all: zad4
 
 zad1:
 	${CC} ${CFLAGS} ${SRC}zad1/serwerPliki.c -o ${TARGET}zad1/serwerPliki.o
@@ -19,4 +15,3 @@ zad4:
 clean:
 	find ${TARGET} -name "*.o" | xargs rm -rf
 
-.PHONY: all clean
