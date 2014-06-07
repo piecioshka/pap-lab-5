@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 
 	/* glowna petla */
 
-	while(1){
+	while (1){
 		fd = accept( sock, NULL, NULL );
 		fpin = fdopen(fd, "r" );
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
 
 void read_til_crnl(FILE *fp) {
 	char	buf[BUFSIZ];
-	while( fgets(buf,BUFSIZ,fp) != NULL && strcmp(buf,"\r\n") != 0 )
+	while ( fgets(buf,BUFSIZ,fp) != NULL && strcmp(buf,"\r\n") != 0 )
 		;
 }
 
@@ -210,7 +210,7 @@ void do_cat(char *f, int fd) {
 	{
 		header( fpsock, content );
 		fprintf(fpsock, "\r\n");
-		while( (c = getc(fpfile) ) != EOF )
+		while ( (c = getc(fpfile) ) != EOF )
 			putc(c, fpsock);
 		fclose(fpfile);
 		fclose(fpsock);

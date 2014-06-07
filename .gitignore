@@ -15,3 +15,13 @@
 *.exe
 *.out
 *.app
+
+# IDE
+nbproject/
+.idea/
+
+# App
+certificate/
+
+# OS
+*.swp
