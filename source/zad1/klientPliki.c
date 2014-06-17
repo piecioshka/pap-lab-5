@@ -6,10 +6,11 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
-#define MAXBUF		1024
+#define MAXBUF 1024
 
-int main(int argc, char* argv[]) {
+int main(int argc, char * argv[]) {
     int sockd;
     int counter;
     int fd;
@@ -17,7 +18,7 @@ int main(int argc, char* argv[]) {
     char buf[MAXBUF];
     int returnStatus;
 
-    if (argc < ...) {
+    if (argc < 4) {
         fprintf(stderr, "Usage: %s <ip address> <port> <filename> [dest filename]\n", argv[0]);
         exit(1);
     }

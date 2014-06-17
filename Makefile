@@ -12,6 +12,14 @@ zad4:
 	${CC} ${CFLAGS} ${SRC}zad4/serwer.c -o ${TARGET}zad4/serwer.o
 	${CC} ${CFLAGS} ${SRC}zad4/klient.c -o ${TARGET}zad4/klient.o
 
+zad7:
+	echo "not ready for task 7"
+
+zad8:
+	echo "not ready for task 8"
+
+zad9:
+	echo "not ready for task 9"
+
 clean:
 	find ${TARGET} -name "*.o" | xargs rm -rf
-
