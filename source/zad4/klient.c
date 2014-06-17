@@ -12,7 +12,7 @@
 
 void child_func (int childnum, char *servIP, int port);
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     int nchildren = 1;
     char * servIP;
     int port;
@@ -40,7 +40,7 @@ int main (int argc, char *argv[]) {
     return 0;
 }
 
-void child_func (int childnum, char *servIP, int port) {
+void child_func(int childnum, char *servIP, int port) {
     int sock;
     struct sockaddr_in sAddr;
     char buffer[MAXBUF];
