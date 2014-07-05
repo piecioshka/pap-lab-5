@@ -5,8 +5,10 @@ TARGET = bin/
 SRC = source/
 
 zad1:
-	${CC} ${CFLAGS} ${SRC}zad1/serwerPliki.c -o ${TARGET}zad1/serwerPliki.o
-	${CC} ${CFLAGS} ${SRC}zad1/klientPliki.c -o ${TARGET}zad1/klientPliki.o
+	${CC} ${CFLAGS} ${SRC}zad1/klient.c -o ${TARGET}zad1/klient.o
+	${CC} ${CFLAGS} ${SRC}zad1/serwer.c -o ${TARGET}zad1/serwer.o
+	# ${CC} ${CFLAGS} ${SRC}zad1/serwerPliki.c -o ${TARGET}zad1/serwerPliki.o
+	# ${CC} ${CFLAGS} ${SRC}zad1/klientPliki.c -o ${TARGET}zad1/klientPliki.o
 
 zad4:
 	${CC} ${CFLAGS} ${SRC}zad4/serwer.c -o ${TARGET}zad4/serwer.o
